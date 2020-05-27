@@ -26,9 +26,9 @@ class GameTeams
     @shots = data[:shots]
     @tackles = data[:tackles]
     @pim = data[:pim]
-    @power_play_opportunities = data[:power_play_opportunities]
-    @power_play_goals = data[:power_play_goals]
-    @face_off_win_percentage = data[:face_off_win_percentage]
+    @power_play_opportunities = data[:powerplayopportunities]
+    @power_play_goals = data[:powerplaygoals]
+    @face_off_win_percentage = data[:faceoffwinpercentage]
     @giveaways = data[:giveaways]
     @takeaways = data[:takeaways]
   end

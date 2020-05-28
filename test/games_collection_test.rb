@@ -6,39 +6,17 @@ require 'pry'
 
 class GamesCollectionTest < MiniTest::Test
   def setup
-    @game_1 = Games.new({game_id: 2012030221,
-                         season: 20122013,
-                         type: 'Postseason',
-                         date_time: '5/16/13',
-                         away_team_id: 3,
-                         home_team_id: 6,
-                         away_goals: 2,
-                         home_goals: 3,
-                         venue: 'Toyota Stadium',
-                         venue_link: '/api/v1/venues/null'})
-    @game_2 = Games.new({game_id: 2012030222,
-                         season: 20122013,
-                         type: 'Postseason',
-                         date_time: '5/19/13',
-                         away_team_id: 3,
-                         home_team_id: 6,
-                         away_goals: 2,
-                         home_goals: 3,
-                         venue: 'Toyota Stadium',
-                         venue_link: '/api/v1/venues/null'})
-    @data = [@game_1, @game_2]
+    @games_collection = GamesCollection.new("./fixture/games_fixture.csv")
   end
 
   def test_it_exists
-    games_collection = GamesCollection.new(@data)
-
-    assert_instance_of GamesCollection, games_collection
+    assert_instance_of GamesCollection, @games_collection
   end
 
   def test_it_has_games
-    games_collection = GamesCollection.new(@data)
-
-    assert_equal 3, games_collection.games[0].away_team_id
-    assert_equal "Toyota Stadium", games_collection.games[1].venue
+    assert_equal "3", @games_collection.collection[0].away_team_id
+    assert_equal "Toyota Stadium", @games_collection.collection[1].venue
+    assert_equal 29, @games_collection.collection.count
+    assert_equal Games, @games_collection.collection.first.class
   end
 end

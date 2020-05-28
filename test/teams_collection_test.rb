@@ -7,33 +7,17 @@ require './lib/teams'
 class TeamsCollectionTest < MiniTest::Test
 
   def setup
-    @team_1 = Teams.new({team_id: 1,
-                       franchise_id: 23,
-                       team_name: "Atlanta United",
-                       abbreviation: "ATL",
-                       stadium: "Mercedes-Benz Stadium",
-                       link: "/api/v1/teams/1"
-                       })
-    @team_2 = Teams.new({team_id: 4,
-                       franchise_id: 16,
-                       team_name: "Chicago Fire",
-                       abbreviation: "CHI",
-                       stadium: "SeatGeek Stadium",
-                       link: "/api/v1/teams/4"
-                       })
-    @data = [@team_1, @team_2]
+    @teams = TeamsCollection.new("./data/teams.csv")
   end
 
   def test_exists
-    teams_collection = TeamsCollection.new(@data)
-
-    assert_instance_of TeamsCollection, teams_collection
+    assert_instance_of TeamsCollection, @teams
   end
 
   def test_it_has_teams
-    teams_collection = TeamsCollection.new(@data)
-
-    assert_equal 1, teams_collection.teams[0].team_id
-    assert_equal 16, teams_collection.teams[1].franchise_id
+    assert_equal "1", @teams.collection[0].team_id
+    assert_equal "16", @teams.collection[1].franchise_id
+    assert_equal 32, @teams.collection.count
+    assert_equal Teams, @teams.collection.first.class
   end
 end

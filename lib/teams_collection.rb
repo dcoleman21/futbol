@@ -1,10 +1,10 @@
-require 'CSV'
-require_relative './teams'
+require 'csv'
 
 class TeamsCollection
-  attr_reader :teams
+  attr_reader :teams, :collection
 
-  def initialize(data)
-    @teams = data
+  def initialize(path)
+    @teams = CSV.read(path, headers: true, header_converters: :symbol)
+    @collection = @teams.map {|row| Teams.new(row)}
   end
 end

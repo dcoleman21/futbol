@@ -24,7 +24,7 @@ class StatTrackerTest < MiniTest::Test
   end
 
   def test_it_can_access_data
-    assert_equal "6", @stat_tracker.games[4].home_team_id
+    assert_equal "5", @stat_tracker.games[4].home_team_id
     assert_equal "Chicago Fire", @stat_tracker.teams[1].team_name
     assert_equal "John Tortorella", @stat_tracker.game_teams[5].head_coach
   end
@@ -50,12 +50,24 @@ class StatTrackerTest < MiniTest::Test
   end
 
   def test_count_of_games_by_season
-    expected = {}
-
+    expected = {
+      "20122013" => 21,
+      "20172018" => 2,
+      "20162017" => 2,
+      "20152016" => 2,
+      "20132014" => 2
+    }
 
     assert_equal expected, @stat_tracker.count_of_games_by_season
-    assert_includes "20122013" , @stat_tracker.count_of_games_by_season.keys
+    #assert_includes "20122013" , @stat_tracker.count_of_games_by_season.key?[0]
+  end
 
+  def test_average_goals_per_game
+    assert_equal 3.65, @stat_tracker.average_goals_per_game
+  end
+
+  def test_average_goals_by_season
+    assert_equal 0, @stat_tracker.average_goals_by_season
   end
 
 end

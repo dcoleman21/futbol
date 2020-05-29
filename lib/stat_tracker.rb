@@ -83,7 +83,7 @@ class StatTracker
 
   # League Statistics
   def count_of_teams
-    # Returns an integer
+    @teams.count
   end
 
   def best_offense
@@ -137,7 +137,8 @@ class StatTracker
 
   # Team Statistics - All methods take a team id as an argument
   def team_info(team_id)
-    # Returns a hash
+    found = @teams.find {|team| team.team_id == team_id}
+    {'team_id' => found.team_id, 'franchise_id' => found.franchise_id, 'team_name' => found.team_name, 'abbreviation' => found.abbreviation, 'link' => found.link}
   end
 
   def best_season(team_id)

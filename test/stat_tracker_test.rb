@@ -49,4 +49,13 @@ class StatTrackerTest < MiniTest::Test
     assert_equal 0.12, @stat_tracker.percentage_ties
   end
 
+  def test_count_of_games_by_season
+    expected = {}
+
+
+    assert_equal expected, @stat_tracker.count_of_games_by_season
+    assert_includes "20122013" , @stat_tracker.count_of_games_by_season.keys
+
+  end
+
 end

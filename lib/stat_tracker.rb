@@ -52,7 +52,10 @@ class StatTracker
   end
 
   def count_of_games_by_season
-    # Returns a hash
+    seasons = {}
+
+    @games.each do |game|
+    end
   end
 
   def average_goals_per_game

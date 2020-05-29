@@ -87,11 +87,35 @@ class StatTracker
   end
 
   def best_offense
-    # Returns a string
+    games_by_team_id = @game_teams.group_by do |game|
+      game.team_id
+    end
+    games_by_team_id.each do |key, games_array|
+      total_games = games_array.count
+      total_goals = games_array.sum do |game|
+        game.goals
+      end
+      average = total_goals / total_games.to_f
+      games_by_team_id[key] = average
+    end
+    best = games_by_team_id.key(games_by_team_id.values.max)
+    best_team = @teams.each {|team| return team.team_name if team.team_id == best}
   end
 
   def worst_offense
-    # Returns a string
+    games_by_team_id = @game_teams.group_by do |game|
+      game.team_id
+    end
+    games_by_team_id.each do |key, games_array|
+      total_games = games_array.count
+      total_goals = games_array.sum do |game|
+        game.goals
+      end
+      average = total_goals / total_games.to_f
+      games_by_team_id[key] = average
+    end
+    worst = games_by_team_id.key(games_by_team_id.values.min)
+    worst_team = @teams.each {|team| return team.team_name if team.team_id == worst}
   end
 
   def highest_scoring_visitor

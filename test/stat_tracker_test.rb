@@ -68,7 +68,7 @@ class StatTrackerTest < MiniTest::Test
 
   def test_average_goals_by_season
     expected = {
-      "20122013"=>3.71, 
+      "20122013"=>3.71,
       "20172018"=>4.0,
       "20162017"=>4.0,
       "20152016"=>4.0,
@@ -77,4 +77,18 @@ class StatTrackerTest < MiniTest::Test
     assert_equal expected, @stat_tracker.average_goals_by_season
   end
 
+  # League Statistics Tests
+  def test_it_can_count_teams
+    assert_equal 32, @stat_tracker.count_of_teams
+  end
+
+  # Team Statistics Tests
+  def test_it_displays_team_info
+    expected = {'team_id' => '4',
+                'franchise_id' => '16',
+                'team_name' => 'Chicago Fire',
+                'abbreviation' => 'CHI',
+                'link' => '/api/v1/teams/4'}
+    assert_equal expected, @stat_tracker.team_info('4')
+  end
 end

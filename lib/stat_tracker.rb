@@ -68,13 +68,17 @@ class StatTracker
   end
 
   def average_goals_by_season
-    seasons = {}
-    @games.group_by { |game| seasons[game.season] = 0}
-    @games.group_by do |game| if seasons.keys.any?(game.season)
-      seasons[game.season] += 1
+    goals = 0
+    hash = @games.group_by {|game| game.season}
+
+    hash.each do |season, games_array|
+      goals = games_array.sum do |game|
+        game.away_goals + game.home_goals
       end
+      result = goals / games_array.count.to_f
+      hash[season] = result.round(2)
     end
-    seasons
+      hash
   end
 
   # League Statistics

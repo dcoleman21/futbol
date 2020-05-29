@@ -28,19 +28,34 @@ class StatTracker
   end
 
   def percentage_home_wins
-    # Returns a float
+    home_games_won = @game_teams.find_all {|game| game.hoa == "home" && game.result == "WIN"}.count
+    total_games = @game_teams.map {|game| game.game_id}.uniq.count
+
+    result = (home_games_won.to_f / total_games.to_f)
+    result.round(2)
   end
 
   def percentage_visitor_wins
-    # Returns a float
+    visitor_games_won = @game_teams.find_all {|game| game.hoa == "away" && game.result == "WIN"}.count
+    total_games = @game_teams.map {|game| game.game_id}.uniq.count
+
+    result = (visitor_games_won.to_f / total_games.to_f)
+    result.round(2)
   end
 
   def percentage_ties
-    # Returns a float
+    ties = @game_teams.find_all {|game| game.result == "TIE"}.count / 2
+    total_games = @game_teams.map {|game| game.game_id}.uniq.count
+
+    result = (ties.to_f / total_games.to_f)
+    result.round(2)
   end
 
   def count_of_games_by_season
-    # Returns a hash
+    seasons = {}
+
+    @games.each do |game|
+    end
   end
 
   def average_goals_per_game

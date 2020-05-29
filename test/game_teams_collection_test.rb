@@ -16,7 +16,7 @@ class GameTeamsCollectionTest < Minitest::Test
   def test_it_has_game_teams
     assert_equal "2012030221", @game_teams.collection[0].game_id
     assert_equal "WIN", @game_teams.collection[1].result
-    assert_equal 29, @game_teams.collection.count
+    assert_equal 34, @game_teams.collection.count
     assert_equal GameTeams, @game_teams.collection.first.class
   end
 end

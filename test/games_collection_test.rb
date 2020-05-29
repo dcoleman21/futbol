@@ -14,8 +14,8 @@ class GamesCollectionTest < MiniTest::Test
   end
 
   def test_it_has_games
-    assert_equal "3", @games_collection.collection[0].away_team_id
-    assert_equal "Toyota Stadium", @games_collection.collection[1].venue
+    assert_equal "6", @games_collection.collection[0].away_team_id
+    assert_equal "BBVA Stadium", @games_collection.collection[1].venue
     assert_equal 29, @games_collection.collection.count
     assert_equal Games, @games_collection.collection.first.class
   end

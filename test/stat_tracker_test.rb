@@ -82,6 +82,14 @@ class StatTrackerTest < MiniTest::Test
     assert_equal 32, @stat_tracker.count_of_teams
   end
 
+  def test_best_offense
+    assert_equal 'FC Dallas', @stat_tracker.best_offense
+  end
+
+  def test_worst_offense
+    assert_equal 'Sporting Kansas City', @stat_tracker.worst_offense
+  end
+
   # Team Statistics Tests
   def test_it_displays_team_info
     expected = {'team_id' => '4',

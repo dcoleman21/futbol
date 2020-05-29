@@ -19,7 +19,7 @@ class StatTrackerTest < MiniTest::Test
 
   def test_it_generates_collections
     assert_equal 29, @stat_tracker.games.count
-    assert_equal 30, @stat_tracker.game_teams.count
+    assert_equal 34, @stat_tracker.game_teams.count
     assert_equal 32, @stat_tracker.teams.count
   end
 
@@ -38,11 +38,15 @@ class StatTrackerTest < MiniTest::Test
   end
 
   def test_it_has_percentage_of_home_games
-    assert_equal 0.67, @stat_tracker.percentage_home_wins
+    assert_equal 0.59, @stat_tracker.percentage_home_wins
   end
 
   def test_percentage_visitor_wins
-    assert_equal 0.33, @stat_tracker.percentage_visitor_wins
+    assert_equal 0.29, @stat_tracker.percentage_visitor_wins
+  end
+
+  def test_percentage_ties
+    assert_equal 0.12, @stat_tracker.percentage_ties
   end
 
 end

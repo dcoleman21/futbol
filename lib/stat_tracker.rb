@@ -44,7 +44,11 @@ class StatTracker
   end
 
   def percentage_ties
-    # Returns a float
+    ties = @game_teams.find_all {|game| game.result == "TIE"}.count / 2
+    total_games = @game_teams.map {|game| game.game_id}.uniq.count
+
+    result = (ties.to_f / total_games.to_f)
+    result.round(2)
   end
 
   def count_of_games_by_season

@@ -4,6 +4,7 @@ require './lib/games'
 require './lib/teams'
 require './lib/game_teams'
 require './lib/stat_tracker'
+require 'pry'
 
 class StatTrackerTest < MiniTest::Test
   def setup
@@ -18,7 +19,7 @@ class StatTrackerTest < MiniTest::Test
 
   def test_it_generates_collections
     assert_equal 29, @stat_tracker.games.count
-    assert_equal 29, @stat_tracker.game_teams.count
+    assert_equal 30, @stat_tracker.game_teams.count
     assert_equal 32, @stat_tracker.teams.count
   end
 
@@ -27,4 +28,17 @@ class StatTrackerTest < MiniTest::Test
     assert_equal "Chicago Fire", @stat_tracker.teams[1].team_name
     assert_equal "John Tortorella", @stat_tracker.game_teams[5].head_coach
   end
+#Game Stats Tests
+  def test_it_can_get_highest_total_score
+    assert_equal 5, @stat_tracker.highest_total_score
+  end
+
+  def test_it_can_get_lowest_total_score
+    assert_equal 1, @stat_tracker.lowest_total_score
+  end
+
+  def test_it_has_percentage_of_home_games
+    assert_equal 66.67, @stat_tracker.percentage_home_wins
+  end
+
 end

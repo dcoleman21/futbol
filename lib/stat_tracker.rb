@@ -259,21 +259,29 @@ class StatTracker
   def best_season(team_id)
     team_games = @games.find_all {|game| game.away_team_id == team_id || game.home_team_id == team_id}
     team_games_by_season = team_games.group_by {|game| game.season}
-    team_games_by_season.each do |season, games|
-      ids = games.map {|game| game.game_id}
-      
-
-    require "pry"; binding.pry
-
-    # games_by_season = @games.group_by {|game| game.season}
-    # all_games_by_team = @game_teams.find_all {|game| game.team_id == team_id}
-    # all_wins_by_team = all_games_by_team.find_all {|game| game.result == "WIN"}
-    # wins_by_team_ids = all_wins_by_team.map {|game| game.game_id}
-
+    team_games_by_season.each do |season, season_games|
+      season_game_ids = season_games.map{|game| game.game_id}
+      team_game_info = @game_teams.find_all {|game| game.team_id == team_id && season_game_ids.include?(game.game_id)}
+      wins = 0.0
+      team_game_info.each {|game| wins += 1.0 if game.result == "WIN"}
+      percent = wins / team_game_info.length
+      team_games_by_season[season] = percent
+    end
+    team_games_by_season.max_by {|season, percent| percent}.first
   end
 
   def worst_season(team_id)
-    # Returns a string
+    team_games = @games.find_all {|game| game.away_team_id == team_id || game.home_team_id == team_id}
+    team_games_by_season = team_games.group_by {|game| game.season}
+    team_games_by_season.each do |season, season_games|
+      season_game_ids = season_games.map{|game| game.game_id}
+      team_game_info = @game_teams.find_all {|game| game.team_id == team_id && season_game_ids.include?(game.game_id)}
+      wins = 0.0
+      team_game_info.each {|game| wins += 1.0 if game.result == "WIN"}
+      percent = wins / team_game_info.length
+      team_games_by_season[season] = percent
+    end
+    team_games_by_season.min_by {|season, percent| percent}.first
   end
 
   def average_win_percentage(team_id)
@@ -296,11 +304,31 @@ class StatTracker
     least_goals.min_by {|game| game.goals}.goals
   end
 
-  def favorite_oppenent(team_id)
-    # Returns a string
+  def favorite_opponent(team_id)
+    team_games = @games.find_all {|game| game.away_team_id == team_id || game.home_team_id == team_id}
+    game_ids = team_games.map {|game| game.game_id}
+    opposing_team_games = @game_teams.find_all {|game| game_ids.include?(game.game_id) && game.team_id != team_id}
+    opposing_teams = opposing_team_games.group_by {|game| game.team_id}
+    hash = opposing_teams.transform_values do |games|
+      wins = 0.0
+      games.each {|game| wins += 1.0 if game.result == "WIN"}
+      wins / games.length.to_f
+    end
+    opp_team_id = hash.min_by {|game, ratio| ratio}.first
+    @teams.find {|team| team.team_id == opp_team_id}.team_name
   end
 
   def rival(team_id)
-    # Returns a string
+    team_games = @games.find_all {|game| game.away_team_id == team_id || game.home_team_id == team_id}
+    game_ids = team_games.map {|game| game.game_id}
+    opposing_team_games = @game_teams.find_all {|game| game_ids.include?(game.game_id) && game.team_id != team_id}
+    opposing_teams = opposing_team_games.group_by {|game| game.team_id}
+    hash = opposing_teams.transform_values do |games|
+      wins = 0.0
+      games.each {|game| wins += 1.0 if game.result == "WIN"}
+      wins / games.length.to_f
+    end
+    opp_team_id = hash.max_by {|game, ratio| ratio}.first
+    @teams.find {|team| team.team_id == opp_team_id}.team_name
   end
 end

@@ -138,7 +138,7 @@ class StatTrackerTest < MiniTest::Test
   end
 
   def test_it_has_worst_season
-    skip
+    assert_equal "", @stat_tracker.best_season("6")
   end
 
   def test_average_win_percentage
@@ -157,6 +157,7 @@ class StatTrackerTest < MiniTest::Test
 
   def test_it_has_favorite_opponent
     skip
+    assert_equal "", @stat_tracker.favorite_oppenent("3")
   end
 
   def test_it_has_a_rival

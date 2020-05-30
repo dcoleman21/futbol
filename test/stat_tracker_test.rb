@@ -99,4 +99,20 @@ class StatTrackerTest < MiniTest::Test
                 'link' => '/api/v1/teams/4'}
     assert_equal expected, @stat_tracker.team_info('4')
   end
+
+  def test_highest_scoring_visitor
+    assert_equal "FC Dallas", @stat_tracker.highest_scoring_visitor
+  end
+
+  def test_highest_scoring_home_team
+    assert_equal "LA Galaxy", @stat_tracker.highest_scoring_home_team
+  end
+
+  def test_lowest_scoring_visitor
+    assert_equal "Sporting Kansas City", @stat_tracker.lowest_scoring_visitor
+  end
+
+  def test_lowest_scoring_home_team
+    assert_equal "Sporting Kansas City", @stat_tracker.lowest_scoring_home_team
+  end
 end

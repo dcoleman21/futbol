@@ -119,18 +119,64 @@ class StatTracker
   end
 
   def highest_scoring_visitor
-    # Returns a string
+    away_games = @game_teams.find_all {|game| game.hoa == "away"}
+    away_games_by_team = away_games.group_by {|game| game.team_id}
+    away_games_by_team.each do |team_id, game_array|
+      total_games = game_array.count
+      total_goals = game_array.sum do |game|
+        game.goals
+      end
+      avg = total_goals / total_games.to_f
+      away_games_by_team[team_id] = avg
+    end
+    best = away_games_by_team.key(away_games_by_team.values.max)
+    best_team = @teams.each {|team| return team.team_name if team.team_id == best}
   end
 
   def highest_scoring_home_team
-    # Returns a string
+    home_games = @game_teams.find_all {|game| game.hoa == "home"}
+    home_games_by_team = home_games.group_by {|game| game.team_id}
+    home_games_by_team.each do |team_id, game_array|
+      total_games = game_array.count
+      total_goals = game_array.sum do |game|
+        game.goals
+      end
+      avg = total_goals / total_games.to_f
+      home_games_by_team[team_id] = avg
+    end
+    best = home_games_by_team.key(home_games_by_team.values.max)
+    best_team = @teams.each {|team| return team.team_name if team.team_id == best}
   end
 
   def lowest_scoring_visitor
+    away_games = @game_teams.find_all {|game| game.hoa == "away"}
+    away_games_by_team = away_games.group_by {|game| game.team_id}
+    away_games_by_team.each do |team_id, game_array|
+      total_games = game_array.count
+      total_goals = game_array.sum do |game|
+        game.goals
+      end
+      avg = total_goals / total_games.to_f
+      away_games_by_team[team_id] = avg
+    end
+    worst = away_games_by_team.key(away_games_by_team.values.min)
+    worst_team = @teams.each {|team| return team.team_name if team.team_id == worst}
     # Returns a string
   end
 
   def lowest_scoring_home_team
+    home_games = @game_teams.find_all {|game| game.hoa == "home"}
+    home_games_by_team = home_games.group_by {|game| game.team_id}
+    home_games_by_team.each do |team_id, game_array|
+      total_games = game_array.count
+      total_goals = game_array.sum do |game|
+        game.goals
+      end
+      avg = total_goals / total_games.to_f
+      home_games_by_team[team_id] = avg
+    end
+    worst = home_games_by_team.key(home_games_by_team.values.min)
+    worst_team = @teams.each {|team| return team.team_name if team.team_id == worst}
     # Returns a string
   end
 

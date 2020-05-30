@@ -117,11 +117,22 @@ class StatTrackerTest < MiniTest::Test
   end
   #_________________
 
+  def test_it_has_winningest_coach
+    assert_equal "Claude Julien", @stat_tracker.winningest_coach("20122013")
+  end
+
+  def test_it_has_the_worst_coach
+        assert_equal "John Tortorella", @stat_tracker.worst_coach("20122013")
+  end
+
+  def test_it_has_most_accurate_team
+        assert_equal "FC Dallas", @stat_tracker.most_accurate_team("20122013")
+  end
+
   def test_average_win_percentage
     assert_equal 1.0, @stat_tracker.average_win_percentage("6")
     assert_equal 0.0, @stat_tracker.average_win_percentage("3")
     assert_equal 0.33, @stat_tracker.average_win_percentage("16")
-
   end
 
   #_________________

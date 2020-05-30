@@ -182,15 +182,46 @@ class StatTracker
 
   # Season Statistics - All methods take a season id as an argument
   def winningest_coach(season_id)
-    # Returns a string
+    season_games = @games.find_all {|game| game.season == season_id}
+    season_games_ids = season_games.map {|game| game.game_id}
+    team_games_by_season = @game_teams.find_all {|game| season_games_ids.include?(game.game_id)}
+
+    coach_wins = games_by_coach = team_games_by_season.group_by {|team| team.head_coach}
+    games_by_coach.each do |k,v|
+      result = v.find_all {|game| game.result == "WIN"}.count
+      games_by_coach[k] = result
+    end
+    coach_wins.max_by {|coach, wins| wins}.first
   end
 
   def worst_coach(season_id)
-    # Returns a string
+    season_games = @games.find_all {|game| game.season == season_id}
+    season_games_ids = season_games.map {|game| game.game_id}
+    team_games_by_season = @game_teams.find_all {|game| season_games_ids.include?(game.game_id)}
+
+    coach_wins = games_by_coach = team_games_by_season.group_by {|team| team.head_coach}
+    games_by_coach.each do |k,v|
+      result = v.find_all {|game| game.result == "WIN"}.count
+      games_by_coach[k] = result
+    end
+    coach_wins.min_by {|coach, wins| wins}.first
   end
 
   def most_accurate_team(season_id)
-    # Returns a string
+    season_games = @games.find_all {|game| game.season == season_id}
+    season_games_ids = season_games.map {|game| game.game_id}
+    teams_by_season = @game_teams.find_all {|game| season_games_ids.include?(game.game_id)}
+
+    data_by_teams = teams_by_season.group_by {|team| team.team_id}
+      data_by_teams.each do |team_id, games|
+        result = games.flat_map do |game|
+          game.goals.to_f / game.shots
+        end
+          data_by_teams[team_id] = result.sum / result.count.to_f
+      end
+
+      accurate_team = data_by_teams.max_by {|team_id, ratio| ratio}.first
+      @teams.find {|team| team.team_id == accurate_team}.team_name
   end
 
   def least_accurate_team(season_id)
@@ -225,7 +256,7 @@ class StatTracker
     wins = 0
     games_by_team_id.each do |game|
       wins += 1 if game.result == "WIN"
-    end 
+    end
     (wins / total.to_f).round(2)
   end
 

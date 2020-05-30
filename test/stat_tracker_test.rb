@@ -134,7 +134,7 @@ class StatTrackerTest < MiniTest::Test
   end
 
   def test_it_has_best_season
-    skip
+    assert_equal "", @stat_tracker.best_season("6")
   end
 
   def test_it_has_worst_season

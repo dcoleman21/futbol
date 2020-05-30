@@ -18,7 +18,6 @@ class StatTracker
     @game_teams = game_teams_collection
   end
 
-  # Game Statistics
   def highest_total_score
     @games.map {|game| game.away_goals + game.home_goals}.max
   end
@@ -81,7 +80,6 @@ class StatTracker
       hash
   end
 
-  # League Statistics
   def count_of_teams
     @teams.count
   end
@@ -161,7 +159,6 @@ class StatTracker
     end
     worst = away_games_by_team.key(away_games_by_team.values.min)
     worst_team = @teams.each {|team| return team.team_name if team.team_id == worst}
-    # Returns a string
   end
 
   def lowest_scoring_home_team
@@ -177,10 +174,8 @@ class StatTracker
     end
     worst = home_games_by_team.key(home_games_by_team.values.min)
     worst_team = @teams.each {|team| return team.team_name if team.team_id == worst}
-    # Returns a string
   end
 
-  # Season Statistics - All methods take a season id as an argument
   def winningest_coach(season_id)
     season_games = @games.find_all {|game| game.season == season_id}
     season_games_ids = season_games.map {|game| game.game_id}
@@ -262,7 +257,19 @@ class StatTracker
   end
 
   def best_season(team_id)
-    # Returns a string
+    team_games = @games.find_all {|game| game.away_team_id == team_id || game.home_team_id == team_id}
+    team_games_by_season = team_games.group_by {|game| game.season}
+    team_games_by_season.each do |season, games|
+      ids = games.map {|game| game.game_id}
+      
+
+    require "pry"; binding.pry
+
+    # games_by_season = @games.group_by {|game| game.season}
+    # all_games_by_team = @game_teams.find_all {|game| game.team_id == team_id}
+    # all_wins_by_team = all_games_by_team.find_all {|game| game.result == "WIN"}
+    # wins_by_team_ids = all_wins_by_team.map {|game| game.game_id}
+
   end
 
   def worst_season(team_id)

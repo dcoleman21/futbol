@@ -115,4 +115,21 @@ class StatTrackerTest < MiniTest::Test
   def test_lowest_scoring_home_team
     assert_equal "Sporting Kansas City", @stat_tracker.lowest_scoring_home_team
   end
+  #_________________
+
+  def test_average_win_percentage
+    assert_equal 1.0, @stat_tracker.average_win_percentage("6")
+    assert_equal 0.0, @stat_tracker.average_win_percentage("3")
+    assert_equal 0.33, @stat_tracker.average_win_percentage("16")
+
+  end
+
+  #_________________
+  def test_most_goals_scored
+    assert_equal 4, @stat_tracker.most_goals_scored("6")
+  end
+
+  def test_fewest_goals_scored
+    assert_equal 0, @stat_tracker.fewest_goals_scored("16")
+  end
 end

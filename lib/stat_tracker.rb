@@ -220,15 +220,23 @@ class StatTracker
   end
 
   def average_win_percentage(team_id)
-    # Returns a float
+    games_by_team_id = @game_teams.find_all {|game| game.team_id == team_id}
+    total = games_by_team_id.count
+    wins = 0
+    games_by_team_id.each do |game|
+      wins += 1 if game.result == "WIN"
+    end 
+    (wins / total.to_f).round(2)
   end
 
   def most_goals_scored(team_id)
-    # Returns an integer
+    most_goals = @game_teams.find_all {|game| game.team_id == team_id}
+    most_goals.max_by {|game| game.goals}.goals
   end
 
   def fewest_goals_scored(team_id)
-    # Returns an integer
+    least_goals = @game_teams.find_all {|game| game.team_id == team_id}
+    least_goals.min_by {|game| game.goals}.goals
   end
 
   def favorite_oppenent(team_id)

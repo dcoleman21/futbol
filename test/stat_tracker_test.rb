@@ -115,4 +115,9 @@ class StatTrackerTest < MiniTest::Test
   def test_lowest_scoring_home_team
     assert_equal "Sporting Kansas City", @stat_tracker.lowest_scoring_home_team
   end
+
+  #_________________
+  def test_most_goals_scored
+    assert_equal 4, @stat_tracker.most_goals_scored("6")
+  end
 end

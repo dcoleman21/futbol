@@ -104,24 +104,23 @@ class StatTrackerTest < MiniTest::Test
   end
 
   def test_it_has_the_worst_coach
-        assert_equal "John Tortorella", @stat_tracker.worst_coach("20122013")
+    assert_equal "John Tortorella", @stat_tracker.worst_coach("20122013")
   end
 
   def test_it_has_most_accurate_team
-        assert_equal "FC Dallas", @stat_tracker.most_accurate_team("20122013")
+    assert_equal "FC Dallas", @stat_tracker.most_accurate_team("20122013")
   end
 
   def test_it_has_least_accurate_team
-    skip
+    assert_equal "Sporting Kansas City", @stat_tracker.least_accurate_team("20122013")
   end
 
   def test_most_tackles
     assert_equal "FC Dallas", @stat_tracker.most_tackles("20122013")
-    #spec harness returning "FC Cinninati"
   end
 
   def test_it_has_fewest_tackles
-    skip
+    assert_equal "Houston Dynamo", @stat_tracker.fewest_tackles("20122013")
   end
 
 # Team Stats

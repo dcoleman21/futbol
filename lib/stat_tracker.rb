@@ -213,27 +213,46 @@ class StatTracker
     teams_by_season = @game_teams.find_all {|game| season_games_ids.include?(game.game_id)}
 
     data_by_teams = teams_by_season.group_by {|team| team.team_id}
-      data_by_teams.each do |team_id, games|
-        result = games.flat_map do |game|
-          game.goals.to_f / game.shots
+        new_hash = data_by_teams.transform_values do |game_array|
+          game_array.sum {|game| game.goals.to_f} / game_array.sum {|game| game.shots}
         end
-          data_by_teams[team_id] = result.sum / result.count.to_f
-      end
-
-      accurate_team = data_by_teams.max_by {|team_id, ratio| ratio}.first
-      @teams.find {|team| team.team_id == accurate_team}.team_name
+        @teams.find {|team| team.team_id == new_hash.max_by {|team_id, ratio| ratio}.first}.team_name
   end
 
   def least_accurate_team(season_id)
-    # Returns a string
+    season_games = @games.find_all {|game| game.season == season_id}
+    season_games_ids = season_games.map {|game| game.game_id}
+    teams_by_season = @game_teams.find_all {|game| season_games_ids.include?(game.game_id)}
+
+    data_by_teams = teams_by_season.group_by {|team| team.team_id}
+        new_hash = data_by_teams.transform_values do |game_array|
+          game_array.sum {|game| game.goals.to_f} / game_array.sum {|game| game.shots}
+        end
+        @teams.find {|team| team.team_id == new_hash.min_by {|team_id, ratio| ratio}.first}.team_name
   end
 
   def most_tackles(season_id)
-    # Returns a string
+    season_games = @games.find_all {|game| game.season == season_id}
+    season_games_ids = season_games.map {|game| game.game_id}
+    teams_by_season = @game_teams.find_all {|game| season_games_ids.include?(game.game_id)}
+
+    data_by_teams = teams_by_season.group_by {|team| team.team_id}
+        new_hash = data_by_teams.transform_values do |game_array|
+          game_array.sum {|game| game.tackles}
+        end
+        @teams.find {|team| team.team_id == new_hash.max_by {|team_id, ratio| ratio}.first}.team_name
   end
 
   def fewest_tackles(season_id)
-    # Returns a string
+    season_games = @games.find_all {|game| game.season == season_id}
+    season_games_ids = season_games.map {|game| game.game_id}
+    teams_by_season = @game_teams.find_all {|game| season_games_ids.include?(game.game_id)}
+
+    data_by_teams = teams_by_season.group_by {|team| team.team_id}
+        new_hash = data_by_teams.transform_values do |game_array|
+          game_array.sum {|game| game.tackles}
+        end
+        @teams.find {|team| team.team_id == new_hash.min_by {|team_id, ratio| ratio}.first}.team_name
   end
 
   # Team Statistics - All methods take a team id as an argument

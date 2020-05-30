@@ -224,7 +224,8 @@ class StatTracker
   end
 
   def most_goals_scored(team_id)
-    # Returns an integer
+    most_goals = @game_teams.find_all {|game| game.team_id == team_id}
+    most_goals.max_by {|game| game.goals}.goals
   end
 
   def fewest_goals_scored(team_id)

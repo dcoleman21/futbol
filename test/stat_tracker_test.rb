@@ -158,11 +158,10 @@ class StatTrackerTest < MiniTest::Test
   end
 
   def test_it_has_favorite_opponent
-    skip
-    assert_equal "", @stat_tracker.favorite_oppenent("3")
+    assert_equal "FC Dallas", @stat_tracker.favorite_opponent("3")
   end
 
   def test_it_has_a_rival
-    skip
+    assert_equal "Houston Dynamo", @stat_tracker.rival("6")
   end
 end

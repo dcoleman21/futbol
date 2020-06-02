@@ -216,7 +216,7 @@ class StatTracker
     opposing_teams = opposing_team_games.group_by {|game| game.team_id}
     hash = opposing_teams.transform_values do |games_array|
       wins = games_array.find_all {|game| game.result == "WIN"}.count
-      wins / games_array.count.to_f
+      wins.to_f / games_array.count
     end
     opp_team_id = hash.min_by {|_, ratio| ratio}.first
     @teams.find {|team| team.team_id == opp_team_id}.team_name
@@ -229,7 +229,7 @@ class StatTracker
     opposing_teams = opposing_team_games.group_by {|game| game.team_id}
     hash = opposing_teams.transform_values do |games_array|
       wins = games_array.find_all {|game| game.result == "WIN"}.count
-      wins / games_array.count.to_f
+      wins.to_f / games_array.count
     end
     opp_team_id = hash.max_by {|_, ratio| ratio}.first
     @teams.find {|team| team.team_id == opp_team_id}.team_name

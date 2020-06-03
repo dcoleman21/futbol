@@ -1,11 +1,10 @@
 require 'minitest/autorun'
 require "minitest/pride"
-require './lib/games'
-require './lib/stat_tracker'
+require './lib/game'
 
-class GamesTest < Minitest::Test
+class GameTest < MiniTest::Test
   def setup
-    @games = Games.new({game_id: 2012030221,
+    @games = Game.new({game_id: 2012030221,
                        season: 20122013,
                        type: 'Postseason',
                        date_time: '5/16/13',
@@ -19,7 +18,7 @@ class GamesTest < Minitest::Test
   end
 
   def test_it_exists
-    assert_instance_of Games, @games
+    assert_instance_of Game, @games
   end
 
   def test_it_has_data

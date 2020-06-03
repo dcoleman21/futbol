@@ -1,11 +1,10 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/game_teams'
-require 'pry'
+require './lib/game_team'
 
-class GameTeamsTest < Minitest::Test
+class GameTeamTest < MiniTest::Test
   def setup
-    @game_teams = GameTeams.new({
+    @game_teams = GameTeam.new({
       game_id: 2012030221,
       team_id: 3,
       hoa: "away",
@@ -25,7 +24,7 @@ class GameTeamsTest < Minitest::Test
   end
 
   def test_it_exists
-    assert_instance_of GameTeams, @game_teams
+    assert_instance_of GameTeam, @game_teams
   end
 
   def test_it_has_data

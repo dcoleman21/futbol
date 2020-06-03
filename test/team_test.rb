@@ -1,12 +1,10 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/teams'
-require './lib/stat_tracker'
+require './lib/team'
 
-class TeamsTest < MiniTest::Test
-
+class TeamTest < MiniTest::Test
   def setup
-      @teams = Teams.new({team_id: 1,
+      @teams = Team.new({team_id: 1,
                          franchiseid: 23,
                          teamname: "Atlanta United",
                          abbreviation: "ATL",
@@ -16,7 +14,7 @@ class TeamsTest < MiniTest::Test
   end
 
   def test_it_exists
-    assert_instance_of Teams, @teams
+    assert_instance_of Team, @teams
   end
 
   def test_it_has_data

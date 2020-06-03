@@ -28,3 +28,8 @@ game_id,team_id,HoA,result,settled_in,head_coach,goals,shots,tackles,pim,powerPl
 2012030235,17,away,LOSS,REG,Mike Babcock,1,6,25,10,4,0,50.8,5,3
 2012030235,16,home,WIN,REG,Joel Quenneville,2,11,22,12,3,2,49.2,7,7
 2012030236,16,away,LOSS,REG,Joel Quenneville,2,7,16,10,5,1,39,3,5
+2012030236,17,home,WIN,REG,Mike Babcock,3,9,29,12,3,0,61,12,4
+2014030171,52,away,TIE,REG,Paul Maurice,2,6,37,8,3,0,37.5,13,7
+2014030171,24,home,TIE,REG,Bruce Boudreau,2,8,46,6,3,2,62.5,9,5
+2014020486,3,away,TIE,SO,Alain Vigneault,2,8,41,8,2,1,43.5,13,18
+2014020486,12,home,TIE,SO,Bill Peters,2,5,33,4,4,0,56.5,14,11

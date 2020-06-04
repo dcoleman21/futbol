@@ -18,18 +18,6 @@ class StatTrackerTest < MiniTest::Test
     assert_instance_of StatTracker, @stat_tracker
   end
 
-  # def test_it_generates_collections
-  #   assert_equal 7441, @stat_tracker.games.count
-  #   assert_equal 14882, @stat_tracker.game_teams.count
-  #   assert_equal 32, @stat_tracker.teams.count
-  # end
-  #
-  # def test_it_can_access_data
-  #   assert_equal "6", @stat_tracker.games[4].home_team_id
-  #   assert_equal "Chicago Fire", @stat_tracker.teams[1].team_name
-  #   assert_equal "John Tortorella", @stat_tracker.game_teams[5].head_coach
-  # end
-
   #Game Stats Tests
   def test_it_can_get_highest_total_score
     assert_equal 11, @stat_tracker.highest_total_score

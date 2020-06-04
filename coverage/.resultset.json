@@ -1,7 +1,11 @@
 {
   "Unit Tests": {
     "coverage": {
+<<<<<<< HEAD
       "/Users/danischoolcomputer/turing/1mod/GroupProject/futbol/lib/stat_tracker.rb": {
+=======
+      "/Users/nirupamaram/turing/1module/group_project/futbol/lib/stat_tracker.rb": {
+>>>>>>> 665b1e0514f130fe5ef85535b1cf4641549c896b
         "lines": [
           1,
           1,
@@ -149,7 +153,11 @@
           null
         ]
       },
+<<<<<<< HEAD
       "/Users/danischoolcomputer/turing/1mod/GroupProject/futbol/lib/team_stats.rb": {
+=======
+      "/Users/nirupamaram/turing/1module/group_project/futbol/lib/team_stats.rb": {
+>>>>>>> 665b1e0514f130fe5ef85535b1cf4641549c896b
         "lines": [
           1,
           null,
@@ -228,7 +236,11 @@
           null
         ]
       },
+<<<<<<< HEAD
       "/Users/danischoolcomputer/turing/1mod/GroupProject/futbol/test/stats_test.rb": {
+=======
+      "/Users/nirupamaram/turing/1module/group_project/futbol/test/stats_test.rb": {
+>>>>>>> 665b1e0514f130fe5ef85535b1cf4641549c896b
         "lines": [
           1,
           1,
@@ -259,7 +271,11 @@
           null
         ]
       },
+<<<<<<< HEAD
       "/Users/danischoolcomputer/turing/1mod/GroupProject/futbol/test/team_stats_test.rb": {
+=======
+      "/Users/nirupamaram/turing/1module/group_project/futbol/test/team_stats_test.rb": {
+>>>>>>> 665b1e0514f130fe5ef85535b1cf4641549c896b
         "lines": [
           1,
           1,
@@ -324,7 +340,11 @@
           null
         ]
       },
+<<<<<<< HEAD
       "/Users/danischoolcomputer/turing/1mod/GroupProject/futbol/test/team_test.rb": {
+=======
+      "/Users/nirupamaram/turing/1module/group_project/futbol/test/team_test.rb": {
+>>>>>>> 665b1e0514f130fe5ef85535b1cf4641549c896b
         "lines": [
           1,
           1,
@@ -357,6 +377,10 @@
         ]
       }
     },
+<<<<<<< HEAD
     "timestamp": 1591219848
+=======
+    "timestamp": 1591219856
+>>>>>>> 665b1e0514f130fe5ef85535b1cf4641549c896b
   }
 }
